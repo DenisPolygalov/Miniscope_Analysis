@@ -33,7 +33,7 @@ function behav = msExtractBehavoir(behav, trackLength)
         for i=1:3
             backgroundIndex = backgroundIndex & (frame(:,:,i) < (.1+double(background(:,:,i))/255) & frame(:,:,i) > (-.1+double(background(:,:,i))/255));
         end
-        backgroundIndex = repmat(backgroundIndex,1,1,3);
+        backgroundIndex = repmat(backgroundIndex,[1,1,3]);
         frame(backgroundIndex) = 0;
 %         frame = frame(:,:,1)./sum(frame(:,:,[2 3]),3);
         bw = hsvThreshold(frame,behav.hsvLevel);
