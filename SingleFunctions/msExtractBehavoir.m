@@ -80,14 +80,14 @@ function behav = msExtractBehavoir(behav, trackLength)
     position = position(~isnan(position(:,1)),:);
     position = interp1(time,position,behav.time);
     dt = median(diff(behav.time/1000)); 
-    position = smoothts(position','b',ceil(1/dt))';
+    % position = smoothts(position','b',ceil(1/dt))';
     behav.position = position;
     
     dx = [0; diff(position(:,1))];
     dy = [0; diff(position(:,2))];
 
     behav.speed = sqrt((dx).^2+(dy).^2)/dt;
-    behav.speed = smoothts(behav.speed','b',ceil(1/dt));
+    % behav.speed = smoothts(behav.speed','b',ceil(1/dt));
     behav.dt = dt;
     behav.trackLength = trackLength;
     
