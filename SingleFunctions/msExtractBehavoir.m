@@ -16,7 +16,7 @@ function behav = msExtractBehavoir(behav, trackLength)
         if (mod(index,10)==0)
             display(['Reading in video for background subtraction. ' num2str(index/length(backgroundFrames)*100) '% done'])
         end
-        frame(:,:,:,index) = uint8(msReadFrame(behav,backgroundFrames(index),false,false,false));
+        frame(:,:,:,index) = uint8(msReadFrameRGB(behav,backgroundFrames(index),false,false,false));
     end
     frame = frame(ROI(3):ROI(4),ROI(1):ROI(2),:,:);
     background = median(frame,4);
@@ -26,7 +26,7 @@ function behav = msExtractBehavoir(behav, trackLength)
 %%
     position = nan(behav.numFrames, 2);
     for frameNum=1:behav.numFrames
-        frame = double(msReadFrame(behav,frameNum,false,false,false))/255;
+        frame = double(msReadFrameRGB(behav,frameNum,false,false,false))/255;
         frame = frame(ROI(3):ROI(4),ROI(1):ROI(2),:);
         
         backgroundIndex = ones(size(frame(:,:,1)));

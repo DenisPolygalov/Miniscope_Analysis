@@ -7,7 +7,7 @@ function behav = msSelectPropsForTracking(behav)
     zeros(behav.height,behav.width));
 
 
-    frame = double(msReadFrame(behav,round(behav.numFrames/2)+100,false,false,false))/255;
+    frame = double(msReadFrameRGB(behav,round(behav.numFrames/2)+100,false,false,false))/255;
 %     figure(1);
     
     while (strcmp(userInput,'N'))
