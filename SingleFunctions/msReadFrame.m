@@ -4,8 +4,12 @@ function frame = msReadFrame(ms,frameNum,columnCorrect, align, dFF)
     
     vidNum = ms.vidNum(frameNum);
     vidFrameNum = ms.frameNum(frameNum);    
-    frame = double(ms.vidObj{vidNum}.read(vidFrameNum));
-
+    frame = ms.vidObj{vidNum}.read(vidFrameNum);
+    
+    if numel(size(frame)) == 3
+        frame = double(rgb2gray(frame));
+    end
+    
     if (columnCorrect)
         frame = frame - ms.columnCorrection + ms.columnCorrectionOffset;
     end
