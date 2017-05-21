@@ -32,7 +32,7 @@ function vidObj = msCalcSegmentRelations(vidObj,calcCorr, calcDist, calcOverlap)
         end
         if calcOverlap
             temp = vidObj.segments(:,:,segNum:vidObj.numSegments);
-            temp = temp & repmat(vidObj.segments(:,:,segNum),1,1,length(segNum:vidObj.numSegments));
+            temp = temp & repmat(vidObj.segments(:,:,segNum),[1,1,length(segNum:vidObj.numSegments)]);
             temp2 = min([segArea(segNum:vidObj.numSegments) repmat(segArea(segNum),1,length(segNum:vidObj.numSegments))'],[],2);
             segOverlap(segNum:vidObj.numSegments,segNum) = squeeze(sum(sum(temp,2),1))./temp2;
         end

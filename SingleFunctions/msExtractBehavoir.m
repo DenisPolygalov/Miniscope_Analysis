@@ -18,7 +18,7 @@ function behav = msExtractBehavoir(behav, trackLength)
         end
         frame(:,:,:,index) = uint8(msReadFrameRGB(behav,backgroundFrames(index),false,false,false));
     end
-    frame = frame(ROI(3):ROI(4),ROI(1):ROI(2),:,:);
+    frame = double(frame(ROI(3):ROI(4),ROI(1):ROI(2),:,:));
     background = median(frame,4);
     figure(2)
     imshow(background,'InitialMagnification','fit')
