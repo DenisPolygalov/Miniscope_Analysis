@@ -21,7 +21,7 @@ function behav = msExtractBehavoir(behav, trackLength)
     frame = double(frame(ROI(3):ROI(4),ROI(1):ROI(2),:,:));
     background = median(frame,4);
     figure(2)
-    imshow(background,'InitialMagnification','fit')
+    imshow(uint8(background),'InitialMagnification','fit')
     title('Background. Make sure the mouse does not show up')
 %%
     position = nan(behav.numFrames, 2);

@@ -20,7 +20,11 @@ function behav = msSelectPropsForTracking(behav)
         behav.ROI = rect; %uint16([rect(1) rect(1)+rect(3) rect(2) rect(2)+rect(4)]);
         rectangle('Position',rect,'LineWidth',2);
         hold off
-        userInput = upper(input('Keep ROI? (Y/N)','s'));
+        userInput = upper(input('Keep ROI? (Y/N, press "A" for the whole frame selection)','s'));
+        if strcmp(userInput,'A')
+            behav.ROI = [1, 1, size(frame,2)-1, size(frame,1)-1];
+            break
+        end
     end
     
      userInput = 'N';
@@ -30,7 +34,7 @@ function behav = msSelectPropsForTracking(behav)
         hold on
         rectangle('Position',rect,'LineWidth',2);
         
-        display('Select LED');
+        display('Select LED. Double click for commit.');
         hEllipse = imellipse;
         wait(hEllipse);
 %         [w, h] = ginput(1);
